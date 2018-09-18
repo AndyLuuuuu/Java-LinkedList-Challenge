@@ -9,13 +9,7 @@ public class Main {
     public static Playlist playlist = new Playlist();
 
     public static void main(String[] args) {
-
-        directions();
-
-    }
-
     // Display directions and then ask for user input.
-    public static void directions() {
         boolean run = true;
         while (run) {
             System.out.println("\nWhat would you like to do?\n" + "\t1. Add a new album.\n" + "\t2. Add song to album.\n" + "\t3. Search for a song in an album.\n" + "\t4. Add a album song to playlist.\n" + "\t5. Play playlist.\n" + "\t6. Quit.");
@@ -35,10 +29,11 @@ public class Main {
                         for (int i = 0; i < myAlbums.size(); i++) {
                             if (myAlbums.get(i).getAlbumName().equals(albumName)) {
                                 System.out.println("This album already exists.");
-                                return;
+                                continue;
                             } else {
                                 addAlbum(albumName);
                                 System.out.println("Album " + albumName + " added.");
+                                continue;
                             }
                         }
                     }
@@ -60,10 +55,12 @@ public class Main {
                             if (songName.equals(myAlbums.get(i).songExists(songName))) {
                                 System.out.println("This song already exists.");
                                 couldNotFind = false;
+                                break;
                             } else {
                                 myAlbums.get(i).addSong(songName, duration);
                                 System.out.println("You have successfully added " + songName + " to album " + album);
                                 couldNotFind = false;
+                                continue;
                             }
                         }
                     }
